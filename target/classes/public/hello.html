@@ -1,0 +1,57 @@
+<html>
+	<head>
+		<script src="/jquery-3.2.1.js"></script>
+		<script src="/lodash.js"></script>
+		<style>
+		
+body {
+	margin-top: 30px;
+	background: lightgray;
+}
+
+#message {
+	border: 4px solid gold;
+	margin: 26px;
+	padding: 14px;
+	font-size: 25px;
+	font-weight: bold;
+}
+#word {
+    border: 4px solid gold;
+    height: 263px;
+    margin: 105px;
+    border-radius: 49px;
+}
+		</style>
+	</head>
+	<body>
+		Hello!!!!
+
+		<div id="message">
+		</div>
+		
+		<div id="word"></div>
+		
+		<script>
+$("body").css("background", "yellow");
+
+$.ajax({
+	url: "/hello",
+	success: function(response) {
+		console.log(response);
+		$("#message").html("Received something: " + response.message);
+	}
+});
+
+$.ajax({
+	url:"/words",
+	success: function(words){
+		words.forEach(function(word, article) {
+			console.log(word, article);
+		});
+		
+	}
+})
+		</script>
+	</body>
+</html>
